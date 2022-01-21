@@ -2,21 +2,24 @@
 Authors: Patricia Fernandez Moreno, Sofía González Matatoros, Víctor Manuel López Molina and Álvaro Pita Ramírez
 
 # 1. Introduction to causal inference
-According to the Encyclopedia Britannica (2022), induction is a means of reasoning from a particulars to generals and one example of this is causal inference. The objectif of this process is to infer the actual effect of a particular element within a more complex system, considering the global outcome under changing conditions (Pearl & Judea, 2009). At this point is important to clarify that association does not imply causation, in other words, two elements can be related because they belongt to the same interacting network, but its relationship cannot be due to a cause-effect.
+According to the Encyclopedia Britannica (2022), induction is a means of reasoning from a particulars to generals and one example of this is causal inference. The objective of this process is to infer the actual effect of a particular element within a more complex system, considering the global outcome under changing conditions (Pearl & Judea, 2009). At this point, it is important to clarify that association does not imply causation, in other words, two elements can be related because they belong to the same interacting network, but its relationship cannot be due to a cause-effect process.
 
-2. Explaining our case 
+Back to the initial topic, when we want to make an interpretation of the statistical results in this type of scenarios, a relevant aspect is to choose on which covariates we are going to adjust in the analysis. Therefore, the aim of this repport is to explain which are the consequences of doing an incorrect analysis, because we are concerned that the process of causal inference is highly used in medical research.
 
-3. The appropriate analysis 
+# 2. Explaining our case 
+
+To illustrate how to perform the correct analysis, we are going to examinate the following scenario
+
+
+```
+
+vcov(reg1)[2,2] #varianza de la pendiente para reg1
+
+```
+
+# 3. The appropriate analysis 
 
 4. Incorrect analysis
-
-INTRODUCTION TO CAUSAL INFERENCE
-
-EXPLAINING OUR CASE
-
-THE APPROPRIATE ANALYSIS
-
-INCORRECT ANALYSIS
 
 # Bibliography
 Britannica, T. Information Architects of Encyclopaedia (2022). thought. Encyclopedia Britannica. https://www.britannica.com/facts/thought
