@@ -14,7 +14,22 @@ To illustrate how to perform the correct analysis, we are going to examinate the
 
 ```
 
-#incluir código ajustado (Víctor), tal vez podríamos incluirlo dentro de una función del paquete
+#incluir código ajustado (Víctor)
+dag1 <- dagitty("dag {
+X -> Z
+X -> Y
+Y -> W
+e_z -> Z
+e_y -> Y
+e_w -> W
+}")
+
+coordinates(dag1) <- list(x = c(Z = 1, X = 2, Y = 3, e_x = 1.75, e_y = 2.75),
+                          y = c(Z = 0, X = 0, Y = 0, e_x = -.2, e_y = -.2))
+
+## plot(dag1)
+drawdag(dag1) #se dibuja el DAG
+drawdag(dag1, xlim = c(0.5, 3.5), ylim = c(-2, 1)) #se dibuja el DAG pero más pequeño
 
 ```
 Considering this DAG, we can make these observations
