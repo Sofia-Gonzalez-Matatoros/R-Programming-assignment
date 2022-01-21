@@ -6,20 +6,45 @@ According to the Encyclopedia Britannica (2022), induction is a means of reasoni
 
 Back to the initial topic, when we want to make an interpretation of the statistical results in this type of scenarios, a relevant aspect is to choose on which covariates we are going to adjust in the analysis. Therefore, the aim of this repport is to explain which are the consequences of doing an incorrect analysis, because we are concerned that the process of causal inference is highly used in medical research.
 
-# 2. Explaining our case 
+# 2. Explaining the appropriate analysis
 
-To illustrate how to perform the correct analysis, we are going to examinate the following scenario
+To illustrate how to perform the correct analysis, we are going to examinate the following scenario with linear regression
 
-
-```
-
-vcov(reg1)[2,2] #varianza de la pendiente para reg1
+#incluir la imagen
 
 ```
 
-# 3. The appropriate analysis 
+#incluir código ajustado (Víctor), tal vez podríamos incluirlo dentro de una función del paquete
 
-4. Incorrect analysis
+```
+Considering this DAG, we can make these observations
+- Z and Y are associated throw X, which is a cofounder, so conditioning on X would render them independent.
+- X and W are connected throw Y, but conditioning on Y will render them independent.
+- Z and W are associated throw X and Y.
+
+In conclusion, to analyze the data related to this plot we should not adjust by any covariate. 
+
+In order to have a reference, we are going to calculate the summary and the variance of the regression models applied to this DAG 
+
+```
+summary(reg1) # Z ~ X
+vcov(reg1)[2,2] 
+
+summary(reg2) # Y ~ X
+vcov(reg2)[2,2] 
+
+summary(reg3) # W ~ Y
+vcov(reg3)[2,2]
+
+summary(reg4) # W ~ X + Z
+vcov(reg4)[2,2]
+
+```
+
+
+# 3. Incorrect analysis
+
+# 4. Comparisons and conclusions
 
 # Bibliography
 Britannica, T. Information Architects of Encyclopaedia (2022). thought. Encyclopedia Britannica. https://www.britannica.com/facts/thought
