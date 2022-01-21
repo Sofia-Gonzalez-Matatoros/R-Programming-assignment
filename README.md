@@ -8,7 +8,7 @@ Back to the initial topic, when we want to make an interpretation of the statist
 
 # 2. Explaining the appropriate analysis
 
-To illustrate how to perform the correct analysis, we are going to examinate the following scenario with linear regression
+To illustrate how to perform the correct analysis, we are going to examinate the following scenario.
 
 #incluir la imagen
 
@@ -39,7 +39,7 @@ Considering this DAG, we can make these observations
 
 In conclusion, to analyze the data related to this plot we should not adjust by any covariate. 
 
-In order to have a reference, we are going to calculate the summary and the variance of the regression models applied to this DAG 
+In order to have a reference, we are going to calculate the summary and the variance of the regression models applied to this DAG.
 
 ```
 summary(reg1) # Z ~ X
