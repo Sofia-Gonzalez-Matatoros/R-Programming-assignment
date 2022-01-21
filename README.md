@@ -2,7 +2,7 @@
 Authors: Patricia Fernandez Moreno, Sofía González Matatoros, Víctor Manuel López Molina and Álvaro Pita Ramírez
 
 INDEX
-1. Introduction to causal inference
+# 1. Introduction to causal inference
 
 2. Explaining our case 
 
