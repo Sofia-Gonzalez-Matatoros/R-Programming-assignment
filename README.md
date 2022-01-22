@@ -63,4 +63,5 @@ vcov(reg4)[2,2]
 
 # Bibliography
 Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encyclopedia Britannica*. https://www.britannica.com/facts/thought
+
 Pearl, Judea. (2009). Causal inference in statistics: An overview. *Statistics Surveys*, *3*, 96–146. doi:10.1214/09-SS057.
