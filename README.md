@@ -51,7 +51,7 @@ vcov(reg2)[2,2]
 summary(reg3) # W ~ Y
 vcov(reg3)[2,2]
 
-summary(reg4) # W ~ X + Z
+summary(reg4) # W ~ X + Y
 vcov(reg4)[2,2]
 
 ```
