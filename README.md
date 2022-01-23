@@ -156,7 +156,9 @@ s.d. estimate =  0.2954924
 ![Plots_multiple](https://user-images.githubusercontent.com/97886286/150673370-9aeefe72-6884-4705-bdd1-2cb0f71c010d.jpeg)
 
 
-It is observed that when adjusting for W the standard deviation increases 0.11 units, while the mean hardly differs. Therefore, in this case adjusting for the covariate W is a bad idea, because it would render 
+It is observed that when adjusting for W the standard deviation increases 0.11 units, while the mean hardly differs. 
+The R documentation indicates that adjusting by a confounder improves the estimates, so we were struck by the fact that in this case adjusting by W increased the deviation. Our hypothesis is that acting W as a fork is part of the information flow from X and Y to Z, since it serves as a mediator between X and Y (Foraita et al., 2014), therefore, adjusting for W would imply eliminating a real association between X and Y, which would affect the information flow received by Z. 
+
 
 ## 3.1. Example with simple regression
 
@@ -458,10 +460,15 @@ At this point, we have carried out a logistic regression in R and have identifie
 
 
 # Bibliography
+
 Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encyclopedia Britannica*. https://www.britannica.com/facts/thought
+
+Foraita R., Spallek J., & Zeeb H. (2014). *Directed Acyclic Graphs. In: Ahrens W., Pigeot I. (eds) Handbook of Epidemiology*. Springer. https://doi.org/10.1007/978-0-387-09834-0_65
 
 Pearl, Judea. (2009). Causal inference in statistics: An overview. *Statistics Surveys*, *3*, 96–146. doi:10.1214/09-SS057.
 
 Pearl, J., Glymour, M., & Jewell., N. P. (2016). *Causal Inference in Statistics: A Primer, First Edition*. John Wiley & Sons Ltd.
 
 Sjölander A. (2018). Estimation of causal effect measures with the R-package stdReg. *European journal of epidemiology*, *33*(9), 847–858. https://doi.org/10.1007/s10654-018-0375-y
+
+
