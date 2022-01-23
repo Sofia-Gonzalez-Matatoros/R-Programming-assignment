@@ -465,7 +465,7 @@ At this point, we have carried out a logistic regression in R and have identifie
 
 # Bibliography
 
-Matthew Blackwell. (2013). Observational Studies and Confounding. Harvard University
+Matthew Blackwell. (2013). Observational Studies and Confounding. [Notes from Causal Inference couse, Harvard University] https://www.mattblackwell.org/files/teaching/s06-observational.pdf
 
 Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encyclopedia Britannica*. https://www.britannica.com/facts/thought
 
