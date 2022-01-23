@@ -12,7 +12,6 @@ According to the Encyclopedia Britannica (2022), induction is a means of reasoni
 Before starting with the objectives, it is essential to understand the following concepts clearly, since they will appear throughout the report
 
 - Fork: diagram in which two arrows emanate from a variable to two independent nodes, giving rise to a dichotomy. (Pearl et al., 2016)
--  
 - Collider
 
 According to VanderWeele, the definition of a confounder has to satisfy two properties: 
@@ -362,3 +361,5 @@ Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encycl
 Pearl, Judea. (2009). Causal inference in statistics: An overview. *Statistics Surveys*, *3*, 96–146. doi:10.1214/09-SS057.
 
 Pearl, J., Glymour, M., & Jewell., N. P. (2016). *Causal Inference in Statistics: A Primer, First Edition*. John Wiley & Sons Ltd.
+
+Sjölander A. (2018). Estimation of causal effect measures with the R-package stdReg. *European journal of epidemiology*, *33*(9), 847–858. https://doi.org/10.1007/s10654-018-0375-y
