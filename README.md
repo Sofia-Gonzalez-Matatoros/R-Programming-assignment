@@ -7,26 +7,13 @@ Authors: Patricia Fernandez Moreno, Sofía González Matatoros, Víctor Manuel L
 
 According to the Encyclopedia Britannica (2022), induction is a means of reasoning from particulars to generals and one example of this is causal inference. The objective of this process is to infer the actual effect of a particular element within a more complex system, considering the global outcome under changing conditions (Pearl & Judea, 2009). At this point, it is important to clarify that association does not imply causation, in other words, two elements can be related because they belong to the same interacting network, but its relationship cannot be due to a cause-effect process.
 
-## 1.2. Covariates: Fork, collider and 
+## 1.2. Covariates: Fork, collider and backdoor path
 
-Before starting with the objectives, it is essential to understand the following concepts clearly, since they will appear throughout the report
+Before starting with the objectives, it is essential to understand the following concepts clearly, since they will appear throughout the report.
 
 - Fork: diagram in which two arrows emanate from a variable to two independent nodes, giving rise to a dichotomy. (Pearl et al., 2016)
-- Collider
-
-According to VanderWeele, the definition of a confounder has to satisfy two properties: 
-- whether under the candidate definition control for all “confounders” suffices to control for “confounding”. Property 1. If S consists of the set of all confounders for the effect of A on Y, then there is no confounding of the effect of A on Y conditional on S i.e. Ya ⫫ A|S. 
-- whether each confounder in some context helps eliminate or reduce confounding bias.
- 
-
- 
-Property 2A. If C is a confounder for the effect of A on Y, then there exists a set of preexposure covariates X such that Ya ⫫ A|(X, C) but Ya A | X.
- 
-Property 2B. If C is a confounder for the effect of A on Y, then there exists a set of preexposure covariates X such that | Σx, c {E(Y|A = 1, x, c) – E(Y|A = 0, x, c)}pr(x, c)–{E(Y1)– E(Y0)}| < | Σx {E(Y|A = 1, x)– E(Y|A = 0, x)}pr(x)–{E(Y1)–E(Y0)}|. 
- 
-Only the following definition satisfies both properties.
- 
-A confounder can be defined as a pre-exposure covariate C for which there exists a set of other covariates X such that effect of the exposure on the outcome is unconfounded conditional on (X, C) but such that for no proper subset of (X, C) is the effect of the exposure on the outcome unconfounded given the subset. 
+- Collider: structure in which one variable receives edges from two other nodes. (Pearl et al., 2016)
+- Backdoor path:
 
 ## 1.3. Objective
 
@@ -68,7 +55,7 @@ drawdag(dag1, xlim = c(-2, 2), ylim = c(-2, 3)
 ![Rplot03](https://user-images.githubusercontent.com/97886286/150672937-08e63785-6c48-4361-91a0-9c9ebad09cc4.jpeg)
 
 Considering this DAG, we can make these observations
-- X and Y are associated throw W, which is a cofounder, so conditioning on W would render them independent.
+- X and Y are associated throw W, which is a fork, so conditioning on W would render them independent.
 - Z is a collider, depending on X and Y.
 
 # 3. Choosing covariates
