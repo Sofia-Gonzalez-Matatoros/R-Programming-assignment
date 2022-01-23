@@ -233,6 +233,8 @@ dist_simple <- function(N = 50, b_xw = 3, b_yw = 2, b_zy = 5, b_zx = 4,
 
 
 ```
+When we call the function ``` dist_simple() ```, the following output is:
+
 ### Summary X without adjusting
 
 | Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
