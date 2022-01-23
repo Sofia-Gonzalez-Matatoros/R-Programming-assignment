@@ -86,7 +86,7 @@ dist_multiple <- function(N = 50, b_xw = 3, b_yw = 2, b_zy = 5, b_zx = 4,
 When we call the function ``` dist_multiple() ```, the following output is:
 
 
-### Summary X without W
+### Summary Effect without W
 
 | Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
 | --- | ---| --- | --- | --- | --- |
@@ -95,7 +95,7 @@ When we call the function ``` dist_multiple() ```, the following output is:
 s.d. estimate =  0.0866533
 
 
-### Summary X with W
+### Summary Effect with W
 
 | Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
 | --- | ---| --- | --- | --- | --- |
@@ -105,13 +105,20 @@ s.d. estimate =  0.2954924
 
 $INSERTAR FOTO
 
+It is observed that when adjusting for W the standard deviation increases 0.11 units, while the mean hardly differs. Therefore, in this case adjusting for the covariate W is a bad idea, because it renders X and Y independent, affecting the analysis.
 
 ## 3.1. Example with simple regression
+
+In this section we will try to find out the individual effect exerted by X on Z. To this end, we will apply the function ``` dist_simple ```, to see which scenario provides the correct analysis. Here we have four options for adjusting: none, W, Y, or W and Y.
+
+$ meter código y foto
+
+Looking at the results, the mean is found to be closer to reality (4) when adjusting for at least one of the covariates. However, the standard deviation is only estimated correctly when adjusting for W and Y simultaneously.
 
 # 4. Changing parameters
 
 
-# 5. Comparisons and conclusions
+# 5. Conclusions
 
 # Bibliography
 Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encyclopedia Britannica*. https://www.britannica.com/facts/thought
