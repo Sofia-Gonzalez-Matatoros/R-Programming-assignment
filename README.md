@@ -254,7 +254,9 @@ s.d. estimate =  1.022683
 ![Plots_simple](https://user-images.githubusercontent.com/97886286/150672678-7e51b079-7291-4dec-98ec-f6015451ded3.jpeg)
 
 
-Looking at the results, the mean is found to be closer to reality (4) when adjusting for at least one of the covariates. However, the standard deviation is only estimated correctly when adjusting for W and Y simultaneously.
+Looking at the results, the mean is found to be closer to reality (mean = 4 and s.d. = 0.086) when adjusting by Y. However, comparing the unadjusted model and the models adjusted for at least one covariate, the latter provide more accurate estimates.
+
+$ Añadir justificación
 
 # 4. Changing parameters
 
@@ -286,38 +288,43 @@ Considering the examples illustrated above, we are going to check what happens i
 ![Plots_simple_parametros_cambiados](https://user-images.githubusercontent.com/97886286/150673717-eca41ea7-01c8-41d6-92a2-1737e74ddc4c.jpeg)
 
 ### Summary X without adjusting
-   Min. 1st Qu.  Median    Mean 
--5.0230 -3.3424 -2.9283 -2.9141 
-3rd Qu.    Max. 
--2.4988 -0.2526 
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| -5.0230 | -3.3424 | -2.9283 | -2.9141 | -2.4988 | -0.2526 
 
  s.d. estimate =  0.6309767
 
- Summary X with W
-   Min. 1st Qu.  Median    Mean 
- -6.642  -4.498  -4.009  -4.005 
-3rd Qu.    Max. 
- -3.501  -1.280 
+### Summary X with W
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| -6.642 | -4.498 | -4.009 | -4.005 | -3.501 | -1.280 
 
  s.d. estimate =  0.7356117 
 
+### Summary X with W and Y
 
- Summary X with W and Y
-   Min. 1st Qu.  Median    Mean 
- -4.189  -4.042  -4.000  -4.000 
-3rd Qu.    Max. 
- -3.961  -3.775 
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| -4.189 | -4.042 | -4.000 | -4.000 | -3.961 | -3.775 
 
  s.d. estimate =  0.06130837 
 
+### Summary X with Y
 
- Summary X with Y
-   Min. 1st Qu.  Median    Mean 
- -4.203  -4.034  -4.000  -4.000 
-3rd Qu.    Max. 
- -3.968  -3.855 
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| -4.203 | -4.034 | -4.000 | -4.000 | -3.968 | -3.855
+
 
  s.d. estimate =  0.05004781
+ 
+## 4.3. Comparison between simple and multiple linear regression
+
+By decreasing the value of the parameter b_zx and increasing the value of sd_x, it is found that the estimates of the deviation of all fitted models improve considerably.
+
+& Añadir justificación
 
 # 5. Conclusions
 
