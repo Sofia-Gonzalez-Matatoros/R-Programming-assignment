@@ -429,8 +429,8 @@ Coefficients:
 | (Intercept) | -1.35946 | 0.53281 | -2.551 | 0.01073 * |
 | smoker | 0.60080 | 0.21693 | 2.770 | 0.00561 **
 age | 0.02399 | 0.01785 | 1.344 | 0.17900   
-race2. | Black | -0.85852 | 0.32331 | -2.655 | 0.00792 **
-race3. | Other | -0.70449 | 0.24624 | -2.861  | 0.00422 **
+race2. Black | -0.85852 | 0.32331 | -2.655 | 0.00792 **
+race3. Other | -0.70449 | 0.24624 | -2.861  | 0.00422 **
 
 Signif. codes:  
 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -445,13 +445,14 @@ Number of Fisher Scoring iterations: 4
 
 As we can see, after carrying out this multiple logistic regression, adjusting by age and race, we observe that both smoking and race are significantly (at 5% significance level) associated with low birthweight, whereas age is not. Thereby, we can infer that race is a confounder, while age is not. Despite the adjustment, the variance-covariance matrix of the effect estimates done by this model does not improve significantly, as shown by the vcov R command. However, since the values of this matrix are acceptable, this is not an issue :
 
-
-> vcov(model)[2,2]
-> 
+```
+vcov(model)[2,2]
+```
 > [1] 0.0399078
 
-> vcov(model1)[2,2]
-> 
+```
+vcov(model1)[2,2]
+```
 >[1] 0.04635483
 
 
