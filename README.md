@@ -67,20 +67,20 @@ Given the diagram explained above, we are going to check whether the effect of X
 ```
 
 dist_multiple <- function(N = 50, b_xw = 3, b_yw = 2, b_zy = 5, b_zx = 4, 
-                            sd_x = 1, sd_y = 5, sd_z = 2, B = 2000, w_min = 1, 
-                            w_max = 5) {
+                          sd_x = 1, sd_y = 5, sd_z = 2, B = 2000, w_min = 1, 
+                          w_max = 5) {
   
   X_no_W <- rep(NA, B) 
-  # we initialize the list with the coeficents of Z when the model is 
+  # we initialize the list with the coefficents of X when the model is 
   # not adjusted
-  X_yes_W <- rep(NA, B) 
-  # we initialize the list of p-values the coeficents of Z when the model is 
-  # not adjusted
+  X_yes_W <- rep(NA, B)
+  # we initialize the list with the coefficents of X when the model is adjusted
   pv_X_no_W <- rep(NA, B) 
-  # we initialize the list with the coeficents of Z when the model is adjusted
+  # we initialize the list of p-values for the estimations of the coefficents 
+  #of X when the model is not adjusted by W
   pv_X_yes_W <- rep(NA, B) 
-  # we initialize the list of p-values the coeficents of Z when the model is
-  # adjusted
+  # we initialize the list of p-values for the estimations of the coefficents 
+  #of X when the model is adjusted by W
   
   for(i in 1:B) { 
     W <- runif(N, w_min, w_max) # The variable W follows an uniform distribution
@@ -100,7 +100,7 @@ dist_multiple <- function(N = 50, b_xw = 3, b_yw = 2, b_zy = 5, b_zx = 4,
     X_no_W[i] <- coefficients(m1)["X"] 
     #estimated coefficient of the effect in model m1
     X_yes_W[i] <- coefficients(m2)["X"] 
-    #estimated coefficient of the effect in model m1
+    #estimated coefficient of the effect in model m2
     
     pv_X_no_W[i] <- summary(m1)$coefficients["X", "Pr(>|t|)"] 
     #p-value in model m1
@@ -110,12 +110,12 @@ dist_multiple <- function(N = 50, b_xw = 3, b_yw = 2, b_zy = 5, b_zx = 4,
     rm(Z, X, Y, W) # We prepare the variables for the next call of the function
   }
   cat("\n Summary effect without W\n")
-  print(summary(X_no_W)) #summary of the coefficents without adjust by W
+  print(summary(X_no_W)) #summary of the coefficents without adjusting by W
   cat("\n s.d. estimate = ", sd(X_no_W)) #standard deviation without adjustment
   cat("\n\n Summary effect with W\n")
-  print(summary(X_yes_W)) #summary of the coefficents without adjust by W
+  print(summary(X_yes_W)) #summary of the coefficents adjusting by W
   cat("\n s.d. estimate = ", sd(X_yes_W), "\n") 
-  #standard deviation with adjustment
+  #standard deviation with the adjustment
   
   op <- par(mfrow = c(2, 2))
   hist(X_no_W, main = "Effect without W in the model", xlab = "Estimate")
