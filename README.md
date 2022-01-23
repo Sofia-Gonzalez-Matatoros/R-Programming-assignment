@@ -8,6 +8,37 @@ Back to the initial topic, when we want to make an interpretation of the statist
 
 # 2. Explaining our DAG
 
+```
+library(dagitty)
+if(!suppressWarnings(require("rethinking", quietly = TRUE))) {
+  drawdag <- plot
+} 
+
+dag1 <- dagitty("dag {
+W -> X
+W -> Y
+X -> Z
+Y -> Z
+e_x -> X
+e_y -> Y
+e_zx -> Z
+e_zy -> Z
+}")
+
+coordinates(dag1) <- list(x = c(W = 2.5, X = 2, Y = 3, Z = 2.5, e_x = 1.5, 
+                                e_y = 3.5, e_zx =1.5, e_zy = 3.5),
+                          y = c(W = -0.5, X = 0, Y = 0, Z = 0.5, e_x = -.25, 
+                                e_y = -0.25, e_zx = .5, e_zy = .5))
+## plot(dag1)
+drawdag(dag1)
+drawdag(dag1, xlim = c(-2, 2), ylim = c(-2, 3)
+
+```
+
+
+![Rplot03](https://user-images.githubusercontent.com/97886286/150672937-08e63785-6c48-4361-91a0-9c9ebad09cc4.jpeg)
+
+
 # 3. Choosing covariates
 
 ## 3.1. Example with multiple regression
@@ -43,9 +74,9 @@ dist_multiple <- function(N = 50, b_xw = 3, b_yw = 2, b_zy = 5, b_zx = 4,
     # acting as a collider of X and Y
     
     m1 <- lm(Z ~ (X + Y)) 
-    # linear regression of Y depending on X and Y without adjusting
+    # linear regression of Z depending on X and Y without adjusting
     m2 <- lm(Z ~ (X + Y) + W) 
-    # linear regression of Y depending on X and Y adjusting by W
+    # linear regression of Z depending on X and Y adjusting by W
     
     X_no_W[i] <- coefficients(m1)["X"] 
     #estimated coefficient of the effect in model m1
@@ -111,7 +142,111 @@ It is observed that when adjusting for W the standard deviation increases 0.11 u
 
 In this section we will try to find out the individual effect exerted by X on Z. To this end, we will apply the function ``` dist_simple ```, to see which scenario provides the correct analysis. Here we have four options for adjusting: none, W, Y, or W and Y.
 
-$ meter código y foto
+```
+dist_simple <- function(N = 50, b_xw = 3, b_yw = 2, b_zy = 5, b_zx = 4, 
+                        sd_x = 1, sd_y = 5, sd_z = 2, B = 2000, w_min = 1, 
+                        w_max = 5) {
+  X_no_W <- rep(NA, B) 
+  X_yes_W <- rep(NA, B)
+  X_yes_Y <- rep(NA, B)
+  X_yes_WY <- rep(NA, B)
+  pv_X_no_W <- rep(NA, B) 
+  pv_X_yes_W <- rep(NA, B)
+  pv_X_yes_Y <- rep(NA, B)
+  pv_X_yes_WY <- rep(NA, B)
+
+  
+  for(i in 1:B) { 
+    W <- runif(N, w_min, w_max)
+    X <- b_xw * W + rnorm(N, 0, sd = sd_x)
+    Y <- b_yw * W + rnorm(N, 0, sd = sd_y)
+    Z <- b_zy * Y + b_zx * X + rnorm(N, 0, sd = sd_z)
+    
+    m1 <- lm(Z ~ X) # linear regression of Z depending on X (unadjusted)
+    m2 <- lm(Z ~ X + W) # adjusted by W
+    m3 <- lm(Z ~ X + W + Y) # adjusted by W and Y
+    m4 <- lm(Z ~ X + Y) # adjusted by Y
+    
+    X_no_W[i] <- coefficients(m1)["X"] 
+    X_yes_W[i] <- coefficients(m2)["X"] 
+    X_yes_WY[i] <- coefficients(m3)["X"]
+    X_yes_Y[i] <- coefficients(m4)["X"]
+    
+    pv_X_no_W[i] <- summary(m1)$coefficients["X", "Pr(>|t|)"] 
+    pv_X_yes_W[i] <- summary(m2)$coefficients["X", "Pr(>|t|)"] 
+    pv_X_yes_WY[i] <- summary(m3)$coefficients["X", "Pr(>|t|)"] 
+    pv_X_yes_Y[i] <- summary(m4)$coefficients["X", "Pr(>|t|)"] 
+    
+    rm(Z, X, Y, W)
+  }
+  cat("\n Summary X without adjusting\n")
+  print(summary(X_no_W))
+  cat("\n s.d. estimate = ", sd(X_no_W))
+  cat("\n\n Summary X with W\n")
+  print(summary(X_yes_W))
+  cat("\n s.d. estimate = ", sd(X_yes_W), "\n")
+  cat("\n\n Summary X with W and Y\n")
+  print(summary(X_yes_WY))
+  cat("\n s.d. estimate = ", sd(X_yes_WY), "\n")
+  cat("\n\n Summary X with Y\n")
+  print(summary(X_yes_Y))
+  cat("\n s.d. estimate = ", sd(X_yes_Y), "\n")
+  
+  op <- par(mfrow = c(2, 4))
+  hist(X_no_W, main = "X without W and Y in the model", xlab = "Estimate")
+  abline(v = b_zx, lty = 2)
+  hist(X_yes_W, main = "X with W in the model", xlab = "Estimate") 
+  abline(v = b_zx, lty = 2)
+  hist(X_yes_WY, main = "X with W and Y in the model", xlab = "Estimate") 
+  abline(v = b_zx, lty = 2)
+  hist(X_yes_Y, main = "X with Y in the model", xlab = "Estimate") 
+  abline(v = b_zx, lty = 2)
+  
+  hist(pv_X_no_W, main = "X without W and Y in the model", xlab = "p-value")
+  hist(pv_X_yes_W, main = "X with W in the model", xlab = "p-value")
+  hist(pv_X_yes_WY, main = "X with W and Y in the model", xlab = "p-value")
+  hist(pv_X_yes_Y, main = "X with Y in the model", xlab = "p-value")
+  par(op)
+}
+
+
+```
+### Summary X without adjusting
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| 3.820 | 6.404 | 7.098 | 7.082 | 7.775 | 10.655 
+
+s.d. estimate =  1.022683
+
+### Summary X with W
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+|-10.210 | 1.508 | 3.951 | 3.970 | 6.333 | 17.020 
+
+ s.d. estimate =  3.604197 
+
+### Summary X with W and Y
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| 3.115 | 3.798 | 3.996 | 3.996 | 4.198 | 5.184 
+
+ s.d. estimate =  0.2931457 
+
+
+### Summary X with Y
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| 3.679 | 3.941 | 3.999 | 4.000 | 4.057 | 4.365 
+
+ s.d. estimate =  0.08639647
+
+
+![Plots_simple](https://user-images.githubusercontent.com/97886286/150672678-7e51b079-7291-4dec-98ec-f6015451ded3.jpeg)
+
 
 Looking at the results, the mean is found to be closer to reality (4) when adjusting for at least one of the covariates. However, the standard deviation is only estimated correctly when adjusting for W and Y simultaneously.
 
