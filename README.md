@@ -160,7 +160,7 @@ It is observed that when adjusting for W the standard deviation increases 0.11 u
 The R documentation indicates that adjusting by a confounder improves the estimates, so we were struck by the fact that in this case adjusting by W increased the deviation. Our hypothesis is that acting W as a fork is part of the information flow from X and Y to Z, since it serves as a mediator between X and Y (Foraita et al., 2014), therefore, adjusting for W would imply eliminating a real association between X and Y, which would affect the information flow received by Z. 
 
 
-## 3.1. Example with simple regression
+## 3.2. Example with simple regression
 
 In this section we will try to find out the individual effect exerted by X on Z. To this end, we will apply the function ``` dist_simple ```, to see which scenario provides the correct analysis. Here we have four options for adjusting: none, W, Y, or W and Y.
 
