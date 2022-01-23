@@ -342,6 +342,122 @@ By decreasing the value of the parameter b_zx and increasing the value of sd_x, 
 
 # 5. Conclusions
 
+# 6. Difficulties
+
+In this work, we also wanted to test the adjustment of covariates when doing a logistic regression, to wit, a statistical model in which variables are categorical, such as pass/fail, win/lose, healthy/sick, etc. In this case, we have based our work in the article form Sjölander (2018).
+
+In this article, the author uses logistic regression models to estimate causal effect measures, by the use of the R-package AF. For this purpose, the author, as well as us, uses a publicly available dataset (clslowbwt), which includes information on 487 births among 188 women. Among this information, we can find the variables lbw (a binary indicator of whether the newborn child has low birthweight, defined as a birthweight smaller or equal to 2500 g), smoker (a binary indicator of whether the mother smoked during pregnancy), race (race of the mother, coded as 1. White, 2. Black or 3. Other), age (age of the mother), and id (a unique identification number for each mother). The full information contained in this dataset can be seen in the following link:
+https://rdrr.io/cran/AF/man/clslowbwt.html#heading-1 
+
+In our case, we wanted to estimate the proportion of low birth weights that would be prevented if nobody would smoke during pregnancy. We controlled for the mother's race and age in the analysis.
+
+The first step was to install the R-package AF and load it, as well as the clslowbwt dataset we will use for the generation of these models:
+
+```
+
+install.packages("AF")
+library(AF)
+data(clslowbwt)
+
+```
+
+Once the dataset and the package were loaded, the next step was to fit a logistic regression model that relates the outcome (low birthweight) to the exposure (smoking). This is done by:
+
+```
+
+Simple logistic regression model
+model<-glm(formula=lbw~smoker,family="binomial",data=clslowbwt)
+summary(model)
+
+```
+
+The result of this is the following:
+
+> summary(model)
+
+Call:
+glm(formula = lbw ~ smoker, family = "binomial", data = clslowbwt)
+
+Deviance Residuals:
+
+| Min | 1Q | Median | 3Q | Max
+| --- | ---| --- | --- | --- |
+-1.0361 | -0.7404 | -0.7404 | 1.3256 | 1.6901  
+
+Coefficients:
+
+| Coefficients |Estimate | Std. Error| z value | Pr(>z)
+| --- | ---| --- | --- | --- |
+| (Intercept) | -1.1542 | 0.1371 | -8.420 | < 2e-16 *** |
+smoker | 0.8124 | 0.1998 | 4.067 | 4.77e-05 ***
+
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+Null deviance: 603.05  on 486  degrees of freedom
+Residual deviance: 586.36  on 485  degrees of freedom
+AIC: 590.36
+
+Number of Fisher Scoring iterations: 4
+
+As we can see, there is strong evidence of the effect of the variable smoker on the outcome (low birthweight). However, we should find out if other variables are also associated with low birthweight. For instance, we will control by race and age:
+
+Multiple logistic regression (adjusting by race and age)
+model1 <- glm(formula=lbw~smoker+age+race,family="binomial",data=clslowbwt)
+summary(model1)
+
+The result of this is the following:
+
+summary(model1)
+
+Call:
+glm(formula = lbw ~ smoker + age + race, family = "binomial", 
+    data = clslowbwt)
+
+Deviance Residuals: 
+
+| Min | 1Q | Median | 3Q | Max
+| --- | ---| --- | --- | --- |
+| -1.2326 | -0.8936 | -0.6491 | 1.2249 | 1.9808  
+
+Coefficients:
+
+| Coefficients |Estimate | Std. Error| z value | Pr(>z) |
+| --- | ---| --- | --- | --- |
+| (Intercept) | -1.35946 | 0.53281 | -2.551 | 0.01073 * |
+| smoker | 0.60080 | 0.21693 | 2.770 | 0.00561 **
+age | 0.02399 | 0.01785 | 1.344 | 0.17900   
+race2. | Black | -0.85852 | 0.32331 | -2.655 | 0.00792 **
+race3. | Other | -0.70449 | 0.24624 | -2.861  | 0.00422 **
+
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+Null deviance: 603.05  on 486  degrees of freedom
+Residual deviance: 570.53  on 482  degrees of freedom
+AIC: 580.53
+
+Number of Fisher Scoring iterations: 4
+
+As we can see, after carrying out this multiple logistic regression, adjusting by age and race, we observe that both smoking and race are significantly (at 5% significance level) associated with low birthweight, whereas age is not. Thereby, we can infer that race is a confounder, while age is not. Despite the adjustment, the variance-covariance matrix of the effect estimates done by this model does not improve significantly, as shown by the vcov R command. However, since the values of this matrix are acceptable, this is not an issue :
+
+
+> vcov(model)[2,2]
+> 
+> [1] 0.0399078
+
+> vcov(model1)[2,2]
+> 
+>[1] 0.04635483
+
+
+At this point, we have carried out a logistic regression in R and have identified potential confounders in the estimation of the effect of the variable smoker on the outcome (low birthweight). We thought of the possibility of doing this process multiple times, like in the “Z_X_Y_adjust_Z.R” script submitted by the professor on Moodle, but then we realised this would not be possible since, in that script, the professor defines the covariables of the linear model by the generation of random numbers, something that cannot be done in this situation since we are using a pre-existing dataset (clslowbwt) whose data cannot change. Therefore, we reckon we cannot do anything else with these logistic models, although we have proven that adjusting by different confounders in the model is totally possible in a logistic model.
+
+
 # Bibliography
 Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encyclopedia Britannica*. https://www.britannica.com/facts/thought
 
