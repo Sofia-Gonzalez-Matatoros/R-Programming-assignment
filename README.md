@@ -13,7 +13,7 @@ Before starting with the objectives, it is essential to understand the following
 
 - Fork: diagram in which two arrows emanate from a variable to two independent nodes, giving rise to a dichotomy. (Pearl et al., 2016)
 - Collider: structure in which one variable receives edges from two other nodes. (Pearl et al., 2016)
-- Backdoor path:
+- Backdoor path: given a graph, a backdoor path from one point A to another B is a non-causal path that begins with a parent of A and ends at B with the collaboration of other points that act as mediators. If we want to identify the direct effect (causal path) of A over B when existing backdoor paths, the backdoor criterion states that the rest of measured covariates must be sufficient to block all backdoor paths from A to B. (Blackwell, 2013)
 
 ## 1.3. Objective
 
@@ -404,9 +404,13 @@ Number of Fisher Scoring iterations: 4
 
 As we can see, there is strong evidence of the effect of the variable smoker on the outcome (low birthweight). However, we should find out if other variables are also associated with low birthweight. For instance, we will control by race and age:
 
+```
+
 Multiple logistic regression (adjusting by race and age)
 model1 <- glm(formula=lbw~smoker+age+race,family="binomial",data=clslowbwt)
 summary(model1)
+
+```
 
 The result of this is the following:
 
@@ -460,6 +464,8 @@ At this point, we have carried out a logistic regression in R and have identifie
 
 
 # Bibliography
+
+Matthew Blackwell. (2013). Observational Studies and Confounding. Harvard University
 
 Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encyclopedia Britannica*. https://www.britannica.com/facts/thought
 
