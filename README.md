@@ -156,7 +156,7 @@ s.d. estimate =  0.2954924
 ![Plots_multiple](https://user-images.githubusercontent.com/97886286/150673370-9aeefe72-6884-4705-bdd1-2cb0f71c010d.jpeg)
 
 
-It is observed that when adjusting for W the standard deviation increases 0.11 units, while the mean hardly differs. Therefore, in this case adjusting for the covariate W is a bad idea, because it renders X and Y independent, affecting the analysis.
+It is observed that when adjusting for W the standard deviation increases 0.11 units, while the mean hardly differs. Therefore, in this case adjusting for the covariate W is a bad idea, because it would render 
 
 ## 3.1. Example with simple regression
 
@@ -268,9 +268,7 @@ s.d. estimate =  1.022683
 ![Plots_simple](https://user-images.githubusercontent.com/97886286/150672678-7e51b079-7291-4dec-98ec-f6015451ded3.jpeg)
 
 
-Looking at the results, the mean is found to be closer to reality (mean = 4 and s.d. = 0.086) when adjusting by Y. However, comparing the unadjusted model and the models adjusted for at least one covariate, the latter provide more accurate estimates.
-
-$ Añadir justificación
+Looking at the results, the mean is found to be closer to reality (mean = 4 and s.d. = 0.086) when adjusting by Y. However, comparing the unadjusted model and the models adjusted for at least one covariate, the latter provide more accurate estimates because it blocks the backdoor path (W -> Y -> X). This example is consistent with what has been published in other causal inference articles, in fact, a similar example appears in the documentation of R stored in CRAN (https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html) 
 
 # 4. Changing parameters
 
