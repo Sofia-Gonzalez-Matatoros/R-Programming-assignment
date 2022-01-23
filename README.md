@@ -8,6 +8,8 @@ Back to the initial topic, when we want to make an interpretation of the statist
 
 # 2. Explaining our DAG
 
+To illustrate how to perform the correct analysis, we are going to examinate the following scenario described on this code
+
 ```
 library(dagitty)
 if(!suppressWarnings(require("rethinking", quietly = TRUE))) {
@@ -38,6 +40,9 @@ drawdag(dag1, xlim = c(-2, 2), ylim = c(-2, 3)
 
 ![Rplot03](https://user-images.githubusercontent.com/97886286/150672937-08e63785-6c48-4361-91a0-9c9ebad09cc4.jpeg)
 
+Considering this DAG, we can make these observations
+- X and Y are associated throw W, which is a cofounder, so conditioning on W would render them independent.
+- Z is a collider, depending on X and Y.
 
 # 3. Choosing covariates
 
@@ -134,7 +139,8 @@ s.d. estimate =  0.0866533
 
 s.d. estimate =  0.2954924 
 
-$INSERTAR FOTO
+![Plots_multiple](https://user-images.githubusercontent.com/97886286/150673370-9aeefe72-6884-4705-bdd1-2cb0f71c010d.jpeg)
+
 
 It is observed that when adjusting for W the standard deviation increases 0.11 units, while the mean hardly differs. Therefore, in this case adjusting for the covariate W is a bad idea, because it renders X and Y independent, affecting the analysis.
 
@@ -252,6 +258,66 @@ Looking at the results, the mean is found to be closer to reality (4) when adjus
 
 # 4. Changing parameters
 
+Considering the examples illustrated above, we are going to check what happens if we decrease the coefficient b_zw and its standard deviation calling the functions like this ``` dist_simple(sd_x = 5, b_zx = -4) ``` and ``` dist_multiple(sd_x = 5, b_zx = -4) ```.
+
+## 4.1. Multiple regression
+
+![Plots_multiple_parametros_cambiados](https://user-images.githubusercontent.com/97886286/150673636-9fd4d2d3-acd2-438e-8b24-03222617dcf8.jpeg)
+
+### Summary effect without W
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- | 
+|-4.162 | -4.034 | -3.999 | -4.000 | -3.966 | -3.835 
+
+ s.d. estimate =  0.05064404
+
+### Summary effect with W
+
+| Min. | 1st Qu. | Median | Mean | 3rd Qu. | Max.
+| --- | ---| --- | --- | --- | --- |
+| -4.191 | -4.040 | -4.000 | -4.000 | -3.960 | -3.807 
+
+ s.d. estimate =  0.06008477
+
+
+## 4.2. Simple regression
+
+![Plots_simple_parametros_cambiados](https://user-images.githubusercontent.com/97886286/150673717-eca41ea7-01c8-41d6-92a2-1737e74ddc4c.jpeg)
+
+### Summary X without adjusting
+   Min. 1st Qu.  Median    Mean 
+-5.0230 -3.3424 -2.9283 -2.9141 
+3rd Qu.    Max. 
+-2.4988 -0.2526 
+
+ s.d. estimate =  0.6309767
+
+ Summary X with W
+   Min. 1st Qu.  Median    Mean 
+ -6.642  -4.498  -4.009  -4.005 
+3rd Qu.    Max. 
+ -3.501  -1.280 
+
+ s.d. estimate =  0.7356117 
+
+
+ Summary X with W and Y
+   Min. 1st Qu.  Median    Mean 
+ -4.189  -4.042  -4.000  -4.000 
+3rd Qu.    Max. 
+ -3.961  -3.775 
+
+ s.d. estimate =  0.06130837 
+
+
+ Summary X with Y
+   Min. 1st Qu.  Median    Mean 
+ -4.203  -4.034  -4.000  -4.000 
+3rd Qu.    Max. 
+ -3.968  -3.855 
+
+ s.d. estimate =  0.05004781
 
 # 5. Conclusions
 
