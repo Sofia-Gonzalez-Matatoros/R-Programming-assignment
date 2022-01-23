@@ -47,7 +47,7 @@ coordinates(dag1) <- list(x = c(W = 2.5, X = 2, Y = 3, Z = 2.5, e_x = 1.5,
                                 e_y = -0.25, e_zx = .5, e_zy = .5))
 ## plot(dag1)
 drawdag(dag1)
-drawdag(dag1, xlim = c(-2, 2), ylim = c(-2, 3)
+drawdag(dag1, xlim = c(1, 4), ylim = c(-1, 1))
 
 ```
 
