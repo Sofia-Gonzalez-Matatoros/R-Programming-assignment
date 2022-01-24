@@ -11,9 +11,9 @@ According to the Encyclopedia Britannica (2022), induction is a means of reasoni
 
 Before starting with the objectives, it is essential to understand the following concepts clearly, since they will appear throughout the report.
 
-- Fork: diagram in which two arrows emanate from a variable to two independent nodes, giving rise to a dichotomy. (Pearl et al., 2016)
-- Collider: structure in which one variable receives edges from two other nodes. (Pearl et al., 2016)
-- Backdoor path: given a graph, a backdoor path from one point A to another B is a non-causal path that begins with a parent of A and ends at B with the collaboration of other points that act as mediators. If we want to identify the direct effect (causal path) of A over B when existing backdoor paths, the backdoor criterion states that the rest of measured covariates must be sufficient to block all backdoor paths from A to B. (Blackwell, 2013)
+- **Fork**: diagram in which two arrows emanate from a variable to two independent nodes, giving rise to a dichotomy. (Pearl et al., 2016)
+- **Collider**: structure in which one variable receives edges from two other nodes. (Pearl et al., 2016)
+- **Backdoor path**: given a graph, a backdoor path from one point A to another B is a non-causal path that begins with a parent of A and ends at B with the collaboration of other points that act as mediators. If we want to identify the direct effect (causal path) of A over B when existing backdoor paths, the backdoor criterion states that the rest of measured covariates must be sufficient to block all backdoor paths from A to B. (Blackwell, 2013)
 
 ## 1.3. Objective
 
