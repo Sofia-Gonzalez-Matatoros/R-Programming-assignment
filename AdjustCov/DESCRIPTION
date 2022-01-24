@@ -1,0 +1,12 @@
+Package: AdjustCov
+Type: Package
+Title: Illustration of problems in the adjustment of covariates when doing causal inference
+Version: 0.1.0
+Author: Victor Manuel Lopez Molina, Sofia Gonzalez Matatoros, Alvaro Pita Ramirez & Patricia Fernandez Moreno
+Maintainer: Victor <victormanuel.lopezm@estudiante.uam.es>, Sofia <sofia.gonzalezm@estudiante.uam.es>, Alvaro <alvaro.pitar@estudiante.uam.es>, Patricia <patricia.fernandezm01@estudiante.uam.es>
+Description: This package performs different regression models, both linear and logistic, in order to test whether the adjustment by different covariates is favourable or not, and which changes can be done to the initial conditions with the objective of making these adjustments advantageous.
+License: -
+Encoding: UTF-8
+LazyData: false
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
