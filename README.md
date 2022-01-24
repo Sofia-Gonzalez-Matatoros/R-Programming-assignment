@@ -350,6 +350,8 @@ Our hypothesis is that the higher the deviation sd_x, the greater the dispersion
 
 # 5. Conclusions
 
+Considering all the scenarios, it is clear that adjusting the covariates appropriately is fundamental to improve the precision of our estimates of the mean and variance. Likewise, changing the parameters relating two variables greatly affects the final result of the interaction network and its estimates.
+
 # 6. Difficulties
 
 In this work, we also wanted to test the adjustment of covariates when doing a logistic regression, to wit, a statistical model in which variables are categorical, such as pass/fail, win/lose, healthy/sick, etc. In this case, we have based our work in the article form Sjölander (2018).
