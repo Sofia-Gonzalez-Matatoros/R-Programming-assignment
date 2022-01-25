@@ -346,7 +346,7 @@ To find out what caused this phenomenon, we reviewed the properties of normal di
 
 If we keep the parameters of Y fixed (mean and deviation) and the deviation of X is increased, we would find that the radicand increases and, therefore, the deviation of the distribution generated from the sum of X and Y. 
 
-Our hypothesis is that the higher the deviation sd_x, the greater the dispersion of the data of the X distribution. Then, considering the causal relationship relating X to Z, the distribution of the data of Z increased the greater the dispersion of X. However, the lower the coefficient b_zx within the natural numbers, the less the influence of X on Z and, therefore, the less the distribution of Z deviates even though the deviation of X is high. Similarly, within negative numbers, the higher the value of b_zx, the lower the influence of X on Y, so the less the distribution of Z would deviate. 
+Our hypothesis is that the higher the deviation sd_x, the greater the dispersion of the data of the X distribution. Then, considering the causal relationship relating X to Z, the larger variance of Z increased the dispersion of X. However, the lower the coefficient b_zx within the natural numbers, the less the influence of X on Z and, therefore, the less the distribution of Z deviates even though the variance of X is high. Similarly, within negative numbers, the higher the value of b_zx, the lower the influence of X on Y, so the the distribution of Z would have less variance.
 
 # 5. Conclusions
 
