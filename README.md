@@ -475,11 +475,12 @@ At this point, we have carried out a logistic regression in R and have identifie
 
 # Bibliography
 
-Matthew Blackwell. (2013). Observational Studies and Confounding. [Notes from Causal Inference couse, Harvard University] https://www.mattblackwell.org/files/teaching/s06-observational.pdf
 
 Britannica, T. Information Architects of Encyclopaedia. (2022). thought. *Encyclopedia Britannica*. https://www.britannica.com/facts/thought
 
 Foraita R., Spallek J., & Zeeb H. (2014). *Directed Acyclic Graphs. In: Ahrens W., Pigeot I. (eds) Handbook of Epidemiology*. Springer. https://doi.org/10.1007/978-0-387-09834-0_65
+
+Matthew Blackwell. (2013). Observational Studies and Confounding. [Notes from Causal Inference couse, Harvard University] https://www.mattblackwell.org/files/teaching/s06-observational.pdf
 
 Pearl, Judea. (2009). Causal inference in statistics: An overview. *Statistics Surveys*, *3*, 96–146. doi:10.1214/09-SS057.
 
