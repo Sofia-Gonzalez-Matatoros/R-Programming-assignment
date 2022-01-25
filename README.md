@@ -276,7 +276,7 @@ Looking at the results, the mean is found to be closer to reality (mean = 4 and 
 
 # 4. Changing parameters
 
-Considering the examples illustrated above, we are going to check what happens if we decrease the coefficient b_zw and its standard deviation calling the functions like this ``` dist_simple(sd_x = 5, b_zx = -4) ``` and ``` dist_multiple(sd_x = 5, b_zx = -4) ```.
+Considering the examples illustrated above, we are going to check what happens if we decrease the coefficient b_zx and increase it's standard deviation calling the functions like this ``` dist_simple(sd_x = 5, b_zx = -4) ``` and ``` dist_multiple(sd_x = 5, b_zx = -4) ```.
 
 ## 4.1. Multiple regression
 
